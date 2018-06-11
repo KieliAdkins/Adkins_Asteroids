@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start () {
         tf = GetComponent<Transform>();
+        GameManager.instance.player = this;
     }
 	
 	// Update is called once per frame
@@ -48,5 +49,10 @@ public class Player : MonoBehaviour
             tf.position = tf.position + (GetComponent<Transform>().up * speed);
             tf.Rotate(0, 0, turnSpeed);
         }
+    }
+
+    void OnDestroy()
+    {
+       
     }
 }
