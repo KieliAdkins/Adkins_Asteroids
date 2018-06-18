@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Adkins_Asteroid_2v", "Adkins_Asteroid_2v.csproj", "{F4379222-DA0D-0FFD-F15C-460ABF72CDBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4379222-DA0D-0FFD-F15C-460ABF72CDBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4379222-DA0D-0FFD-F15C-460ABF72CDBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4379222-DA0D-0FFD-F15C-460ABF72CDBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4379222-DA0D-0FFD-F15C-460ABF72CDBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
