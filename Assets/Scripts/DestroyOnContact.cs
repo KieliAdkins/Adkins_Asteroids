@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SafeSpace : MonoBehaviour
+public class DestroyOnContact : MonoBehaviour
 {
-    void OnTriggerExit2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         Destroy(other.gameObject);
+        Destroy(gameObject);
     }
 }

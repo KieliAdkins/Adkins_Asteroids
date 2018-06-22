@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
+
     // Defining variables
     public static GameManager instance;
     public Player player;
-    public List<Enemy> enemies;
+    public Laser laser;
+    public List<AsteroidSpawn> spawn;
+
+    // Player information variables
     public float score = 0;
-    private int lives;
+    public int lives;
 
     // Use this for initialization
     void Awake() {
@@ -25,25 +29,19 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    
     // Update is called once per frame
     void Update()
     {
-        // Lose Condition
         if (lives < 0)
         {
-            DoGameOver();
+            OnDestroy();
         }
     }
 
-    // Loop detailing lose condition
-    void DoGameOver()
+    private void OnDestroy()
     {
-        // TODO: Game over
-    }
-
-    void ResetGame()
-    {
-        // TODO: Game Reset
+        Application.Quit();
     }
 
 }
