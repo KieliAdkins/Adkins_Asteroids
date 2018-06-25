@@ -6,16 +6,23 @@ public class GameManager : MonoBehaviour {
 
     // Defining variables
     public static GameManager instance;
-    public Player player;
-    public Laser laser;
-    public List<AsteroidSpawn> spawn;
+    public int playerLives;
+    public int score;
+    public List<GameObject> enemyList = new List<GameObject>();
+    private int numEnemySpawned = 0;
+    private int numToSpawn = 2;
+    public Transform spawnPoint; 
 
-    // Player information variables
-    public float score = 0;
-    public int lives;
+    public float spawnWait;
+    public float startWait;
+    public float waveWait;
 
-    // Use this for initialization
-    void Awake() {
+    public GameObject target; 
+
+
+    // Use this for initialization and destruction of duplicate Game Managers
+    void Awake()
+    {
         // Ensuring that the Game manager is loaded
         if (instance == null)
         {
@@ -27,21 +34,64 @@ public class GameManager : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-    }
 
-    
-    // Update is called once per frame
-    void Update()
-    {
-        if (lives < 0)
+        // Filling array with prefabs
+        Object[] enemyPrefab = Resources.LoadAll("Prefabs", typeof(GameObject));
+
+        foreach (GameObject enemy in enemyPrefab)
         {
-            OnDestroy();
+            GameObject tempEnemy = (GameObject)enemy;
+            enemyList.Add(tempEnemy);
         }
     }
 
-    private void OnDestroy()
+
+    void spawnEnemy()
     {
-        Application.Quit();
+        for (int i = 0; i < numToSpawn; i++)
+        {
+            int whichItem = Random.Range(0, enemyList.Count - 1);
+            Vector3 spawnPoint = new Vector3(Random.Range(-3.35f, 3.35f), 5, 0);
+            Quaternion spawnRotation = Quaternion.identity;
+            GameObject myEnemy = Instantiate(enemyList[whichItem], spawnPoint, spawnRotation) as GameObject;
+            myEnemy.transform.position = transform.position;
+            numEnemySpawned++;
+        }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (numToSpawn > numEnemySpawned)
+        {
+            transform.position = spawnPoint.transform.position;
+            spawnEnemy();
+        }
+
+        if (playerLives < 0)
+        {
+            Application.Quit();
+        }
+	}
+
+    /* Coroutine to spawn enemy waves
+    IEnumerator SpawnWaves()
+    {
+        yield return new WaitForSeconds(startWait);
+        while (true)
+        {
+            for (int i = 0; i < 1; i++)
+            {
+                int whichItem = Random.Range(0,enemyList.Count - 1);
+                Vector3 spawnPoint = new Vector3(Random.Range(-3.35f, 3.35f), 5, 0);
+                Quaternion spawnRotation = Quaternion.identity;
+                GameObject myEnemy = Instantiate(enemyList[whichItem], spawnPoint, spawnRotation) as GameObject;
+                myEnemy.transform.position = transform.position;
+                yield return new WaitForSeconds(spawnWait);
+                numEnemySpawned++;
+            }
+            yield return new WaitForSeconds(waveWait);
+        }
+    }*/
 }
