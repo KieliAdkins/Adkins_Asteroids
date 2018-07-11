@@ -6,16 +6,20 @@ public class GameManager : MonoBehaviour {
 
     // Defining variables
     public static GameManager instance;
-    public Player player;
-    public Laser laser;
-    public List<AsteroidSpawn> spawn;
+    public int playerLives;
+    public int score;
+    public List<GameObject> enemyList = new List<GameObject>();
+    private int numEnemySpawned;
+    private int numToSpawn = 4;
 
-    // Player information variables
-    public float score = 0;
-    public int lives;
+    internal Quaternion rotation;
+    public GameObject target; 
 
-    // Use this for initialization
-    void Awake() {
+
+    // Use this for initialization and destruction of duplicate Game Managers
+    void Awake()
+    {
+
         // Ensuring that the Game manager is loaded
         if (instance == null)
         {
@@ -27,21 +31,43 @@ public class GameManager : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-    }
 
-    
-    // Update is called once per frame
-    void Update()
-    {
-        if (lives < 0)
+        // Filling array with prefabs
+        Object[] enemyPrefab = Resources.LoadAll("Prefabs", typeof(GameObject));
+
+        foreach (GameObject enemy in enemyPrefab)
         {
-            OnDestroy();
+            GameObject tempEnemy = (GameObject)enemy;
+            enemyList.Add(tempEnemy);
         }
     }
 
-    private void OnDestroy()
+    // Spawning the enemy
+    void SpawnEnemy()
     {
-        Application.Quit();
+        // If there are less than 3 enemies spawned create more
+        if (numEnemySpawned <= numToSpawn)
+        {
+            int whichItem = Random.Range(0, enemyList.Count);
+            Vector3 spawnPoint = new Vector3(Random.Range(-3.35f, 3.35f), 5, 0);
+            Quaternion spawnRotation = Quaternion.identity;
+            GameObject myEnemy = Instantiate(enemyList[whichItem], spawnPoint, spawnRotation) as GameObject;
+            myEnemy.transform.position = spawnPoint;
+            numEnemySpawned++;
+        }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        // Calling the function to instantiate enemies
+        SpawnEnemy();
+
+
+        // Quitting the application if the player has no lives
+        if (playerLives < 0)
+        {
+            Application.Quit();
+        }
+	}
 }

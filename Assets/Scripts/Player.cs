@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
     // Defining variables
     public float moveSpeed;
     public float turnSpeed;
     private Transform tf;
-    private GameManager lives;
-    public float shotDestroySpeed;
-
     public GameObject laser;
-    public Transform shotSpawn;
+    public Transform laserSpawn;
     internal Quaternion rotation;
 
     // Use this for initialization
     void Start()
     {
+        // Acquiring component for movement
         tf = GetComponent<Transform>();
     }
 
@@ -53,12 +52,17 @@ public class Player : MonoBehaviour
         // if statement for shooting movement
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(laser, shotSpawn.position, shotSpawn.rotation);
+            Instantiate(laser, laserSpawn.position, laserSpawn.rotation);
         }
     }
 
-    private void OnDestroy()
+    void OnDestroy()
     {
+        // Moving player back to the center of the game
         tf.position = Vector3.zero;
+
+        // Player loses a life
+        GameManager.instance.playerLives -= 1;
     }
+
 }

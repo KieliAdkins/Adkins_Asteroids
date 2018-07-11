@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 14
-  productGUID: ee1c9e15f3f56ce4c917252a8b69a57b
+  productGUID: 604bb91f94ced7840bd38874acdaa2f4
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   defaultScreenOrientation: 4
@@ -12,7 +12,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Adkins_Asteroid_3v
+  productName: Adkins_UltimateAsteroid_2v
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -558,14 +558,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Adkins_Asteroid_3v
+  metroPackageName: Adkins_UltimateAsteroid_2v
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Adkins_Asteroid_3v
+  metroApplicationDescription: Adkins_UltimateAsteroid_2v
   wsaImages: {}
   metroTileShortName: 
   metroCommandLineArgsFile: 
@@ -630,11 +630,12 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 3f7a1d4c-2cee-49fa-ab5a-51b0534c8e8a
-  projectName: Adkins_Asteroid_3v
+  cloudProjectId: 41ce9151-9c7e-4849-b9ea-45d7a23ba62b
+  projectName: Adkins_UltimateAsteroid_2v
   organizationId: kieliadkins
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
